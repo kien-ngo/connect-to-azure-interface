@@ -37,12 +37,13 @@ public class Lab5Test extends Application {
                 "trustServerCertificate=false;" +
                 "hostNameInCertificate=*.database.windows.net;" +
                 "loginTimeout=30;";
+
         data = new DataAccessor(connectionString);
 
 
         primaryStage.setTitle("Lab 5 - Java");
         Group root = new Group();
-        Scene scene = new Scene(root, 400, 400, Color.WHITE);
+        Scene scene = new Scene(root, 600, 600, Color.WHITE);
 
         TabPane tabPane = new TabPane();
         tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
@@ -110,6 +111,10 @@ public class Lab5Test extends Application {
         ObservableList games = FXCollections.observableArrayList(data.getGameTitle());
         ComboBox gamePlayedComboBox = new ComboBox(games);
         gamePlayedComboBox.setPromptText("Select one from database");
+        Label scoreLabel = new Label("Score: ");
+        TextField scoreTextField = new TextField();
+        Label dateLabel = new Label("Playing date: ");
+        DatePicker playingDatePicker = new DatePicker();
         Button addPlayerButton = new Button("Add player");
         Button resetPlayerButton = new Button("Reset");
 
@@ -126,7 +131,11 @@ public class Lab5Test extends Application {
         addPlayerPane.add(provinceLabel,0,5);
         addPlayerPane.add(phoneLabel,0,6);
         addPlayerPane.add(gamePlayedLabel,0,7);
-        addPlayerPane.add(addPlayerButton,0,8);
+
+        addPlayerPane.add(scoreLabel,0,8);
+        addPlayerPane.add(dateLabel,0,9);
+        addPlayerPane.add(addPlayerButton,0,10);
+        //------ Text fields
         addPlayerPane.add(playerIdTextField,1,0);
         addPlayerPane.add(firstNameTextField,1,1);
         addPlayerPane.add(lastNameTextField,1,2);
@@ -135,7 +144,10 @@ public class Lab5Test extends Application {
         addPlayerPane.add(provinceTextField,1,5);
         addPlayerPane.add(phoneTextField,1,6);
         addPlayerPane.add(gamePlayedComboBox,1,7);
-        addPlayerPane.add(resetPlayerButton,1,8);
+
+        addPlayerPane.add(scoreTextField,1,8);
+        addPlayerPane.add(playingDatePicker,1,9);
+        addPlayerPane.add(resetPlayerButton,1,10);
 
         addPlayerPane.setAlignment(Pos.CENTER);
         // Add pane to Tab
@@ -146,7 +158,7 @@ public class Lab5Test extends Application {
 
         //-----------------------
         Tab viewInfo = new Tab();
-        viewInfo.setText("View information");
+        viewInfo.setText("Database log");
         GridPane viewPane = new GridPane();
 
         TableColumn<Game, String> gameIdColumn = new TableColumn<Game, String>("Game ID");
