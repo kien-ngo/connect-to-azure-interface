@@ -20,12 +20,13 @@ import javafx.scene.control.TableView ;
 import javafx.scene.control.TableColumn ;
 import javafx.scene.control.cell.PropertyValueFactory ;
 
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.List;
 
 public class Lab5Test extends Application {
     private DataAccessor data;
-    private TableView gameTableView = new TableView();
+    public String gameIdForQuery = "0";
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Get data
@@ -67,6 +68,27 @@ public class Lab5Test extends Application {
         TextField gameTitleTextField = new TextField();
         Button addGameButton = new Button("Add game");
         Button resetGameButton = new Button("Reset");
+
+        // Action
+        addGameButton.setOnAction(new EventHandler<ActionEvent>()  {
+            @Override
+            public void handle(ActionEvent event) throws {
+                if (gameIdTextField.getText() != null && gameIdTextField.getText() !=""
+                        && gameTitleTextField.getText() != null && gameTitleTextField.getText() != "") {
+                    String game_id = gameIdTextField.getText();
+                    String game_title = gameTitleTextField.getText();
+                    //data.addGame(game_id, game_title);
+
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Input error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Please input atleast something");
+                    alert.showAndWait();
+                }
+            }
+        });
+
         // Add content to Pane
         addGamePane.add(gameIdLabel,0,0);
         addGamePane.add(gameIdTextField,1,0);
@@ -81,7 +103,7 @@ public class Lab5Test extends Application {
 
 
 
-        //-----------------------
+        //-----------------------ADD PLAYER
 
 
 
@@ -108,7 +130,7 @@ public class Lab5Test extends Application {
         Label phoneLabel = new Label("Phone number: ");
         TextField phoneTextField = new TextField();
         Label gamePlayedLabel = new Label("Game played: ");
-        ObservableList games = FXCollections.observableArrayList(data.getGameTitle());
+        ObservableList games = FXCollections.observableList(data.getGameTitle());
         ComboBox gamePlayedComboBox = new ComboBox(games);
         gamePlayedComboBox.setPromptText("Select one from database");
         Label scoreLabel = new Label("Score: ");
@@ -156,6 +178,46 @@ public class Lab5Test extends Application {
 
 
 
+
+
+        //----------------------- VIEW PLAYER LADDER
+        Tab playerLadder = new Tab();
+        playerLadder.setText("Player ladder");
+        GridPane playerLadderGridPane = new GridPane();
+        playerLadderGridPane.setAlignment(Pos.CENTER);
+        Label selectGameOnLadder = new Label("Select a game to view ladder");
+        ObservableList gameListCC = FXCollections.observableList(data.getGameLadder(gameIdForQuery));
+        ListView<String> laddersListView = new ListView<String>(gameListCC);
+        ComboBox gameList = new ComboBox(games);
+
+        Button viewLadderButton = new Button("View");
+
+
+        viewLadderButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+
+                gameIdForQuery = Integer.toString(gameList.getSelectionModel().getSelectedIndex() + 1);
+                laddersListView.setItems(gameListCC);
+                System.out.println("Clicked");
+            }
+        });
+
+        /*
+        gameList.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                gameIdForQuery = Integer.toString(gameList.getSelectionModel().getSelectedIndex()+1);
+                laddersListView.setItems(gameListCC);
+            }
+        });
+*/
+        playerLadderGridPane.add(selectGameOnLadder,0,0);
+        playerLadderGridPane.add(gameList,0,1);
+        playerLadderGridPane.add(viewLadderButton,1,1);
+        playerLadderGridPane.add(laddersListView,0,2);
+        playerLadder.setContent(playerLadderGridPane);
+
         //----------------------- DATABASE LOG
         Tab viewInfo = new Tab();
         viewInfo.setText("Database log");
@@ -167,8 +229,8 @@ public class Lab5Test extends Application {
         System.out.println("DATABASE>> LIST OF PLAYERS >> PLAYER Table");
         List<Player> playerTEMP = data.getPlayerList();
 
-        ObservableList gameForListView = FXCollections.observableArrayList(data.getGameTitle());
-        ObservableList playerForListView = FXCollections.observableArrayList(data.getPlayerName());
+        ObservableList gameForListView = FXCollections.observableList(data.getGameTitle());
+        ObservableList playerForListView = FXCollections.observableList(data.getPlayerName());
 
         ListView<String> gameListView = new ListView<>(gameForListView);
         ListView<String> playerListView = new ListView<>(playerForListView);
@@ -183,7 +245,7 @@ public class Lab5Test extends Application {
         viewPane.setAlignment(Pos.CENTER);
         viewInfo.setContent(viewPane);
 
-        tabPane.getTabs().addAll(addGame,addPlayer,viewInfo);
+        tabPane.getTabs().addAll(addGame,addPlayer,playerLadder,viewInfo);
 
 
 
@@ -203,6 +265,8 @@ public class Lab5Test extends Application {
             data.shutdown();
         }
     }
+
+
     public static void main(String[] args) {
         Application.launch(args);
     }

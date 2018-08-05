@@ -1,5 +1,8 @@
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
+import java.rmi.RemoteException;
 import java.sql.Connection ;
 import java.sql.DriverManager ;
 import java.sql.SQLException ;
@@ -108,6 +111,61 @@ public class DataAccessor {
             return games;
         }
     }
+
+    public List getGameLadder(String game_id) throws SQLException {
+
+        String query = "select first_name, last_name, score from Player, PlayerAndGame " +
+                "where Player.player_id = PlayerAndGame.player_id " +
+                "and PlayerAndGame.game_id  = " + game_id;
+
+        try (
+                Statement stmnt = connection.createStatement();
+
+
+                ResultSet rs = stmnt.executeQuery(query);
+                )
+
+        {
+            List ladders = new ArrayList<>();
+            while(rs.next()) {
+                String first_name = rs.getString("first_name");
+                String last_name = rs.getString("last_name");
+                String name = first_name + " " + last_name;
+                String score = rs.getString("score");
+
+                String log = String.format("%-35s %s", name, score);
+                ladders.add(log);
+            }
+
+            return ladders;
+        }
+
+    }
+
+    public void addGame(String game_id, String game_title) throws SQLException{
+        // Duplication error code = 2601
+        int PK_DUPLICATE = 2601;
+
+        String query = "insert into game" +
+                "values("+ game_id+","+game_title+")";
+
+        try{
+            Statement stmnt = connection.createStatement();
+            ResultSet rs = stmnt.executeQuery(query);
+
+        } catch(SQLException e){
+            if(e.getErrorCode() == PK_DUPLICATE ){
+                //duplicate primary key
+                System.out.println("Duplicate primary key");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Input error");
+                alert.setHeaderText(null);
+                alert.setContentText("Game ID is duplicated, please input another value");
+                alert.showAndWait();
+            }
+        }
+    }
+
 
     public void shutdown() throws SQLException {
         if (connection != null) {
