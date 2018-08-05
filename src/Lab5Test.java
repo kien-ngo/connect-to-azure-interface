@@ -21,9 +21,9 @@ import javafx.scene.control.TableColumn ;
 import javafx.scene.control.cell.PropertyValueFactory ;
 
 import java.sql.*;
+import java.util.List;
 
 public class Lab5Test extends Application {
-
     private DataAccessor data;
     private TableView gameTableView = new TableView();
     @Override
@@ -156,20 +156,32 @@ public class Lab5Test extends Application {
 
 
 
-        //-----------------------
+        //----------------------- DATABASE LOG
         Tab viewInfo = new Tab();
         viewInfo.setText("Database log");
         GridPane viewPane = new GridPane();
+        // LOG - List of game
+        System.out.println("DATABASE>> LIST OF GAME >> GAME Table");
+        List<Game> gameTEMP = data.getGameList();
+        System.out.println();
+        System.out.println("DATABASE>> LIST OF PLAYERS >> PLAYER Table");
+        List<Player> playerTEMP = data.getPlayerList();
 
-        TableColumn<Game, String> gameIdColumn = new TableColumn<Game, String>("Game ID");
-        gameIdColumn.setCellValueFactory(new PropertyValueFactory("game_id"));
+        ObservableList gameForListView = FXCollections.observableArrayList(data.getGameTitle());
+        ObservableList playerForListView = FXCollections.observableArrayList(data.getPlayerName());
 
-        TableColumn<Game, String> gameTitleColumn = new TableColumn<Game, String>("Game title");
-        gameTitleColumn.setCellValueFactory(new PropertyValueFactory("game_title"));
-        gameTableView.setItems(FXCollections.observableArrayList(data.getGameList()));
-        gameTableView.getColumns().addAll(gameIdColumn,gameTitleColumn);
+        ListView<String> gameListView = new ListView<>(gameForListView);
+        ListView<String> playerListView = new ListView<>(playerForListView);
+        Label gameListViewLabel = new Label("List of games");
+        Label playerListViewLabel = new Label("List of players");
 
-        viewInfo.setContent(gameTableView);
+        viewPane.add(gameListViewLabel,0,0);
+        viewPane.add(playerListViewLabel,1,0);
+        viewPane.add(gameListView,0,1);
+        viewPane.add(playerListView,1,1);
+
+        viewPane.setAlignment(Pos.CENTER);
+        viewInfo.setContent(viewPane);
 
         tabPane.getTabs().addAll(addGame,addPlayer,viewInfo);
 

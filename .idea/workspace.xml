@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataAccessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataAccessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lab5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lab5Test.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -65,21 +66,19 @@
           <file leaf-file-name="Lab5Test.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Lab5Test.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1562">
-                  <caret line="147" column="41" selection-start-line="147" selection-start-column="41" selection-end-line="147" selection-end-column="41" />
+                <state relative-caret-position="91">
+                  <caret line="170" column="97" selection-start-line="170" selection-start-column="97" selection-end-line="170" selection-end-column="97" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#5573#5587#0" expanded="true" />
-                    <element signature="e#5747#5761#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/Game.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-373">
+                <state relative-caret-position="-262">
                   <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -96,13 +95,16 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DataAccessor.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="DataAccessor.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/DataAccessor.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
+                <state relative-caret-position="301">
+                  <caret line="97" column="71" selection-start-line="97" selection-start-column="71" selection-end-line="97" selection-end-column="71" />
                   <folding>
                     <element signature="imports" expanded="true" />
+                    <element signature="method#getGameList#0;class#DataAccessor#0" />
+                    <element signature="method#getPlayerlist#0;class#DataAccessor#0" />
+                    <element signature="method#shutdown#0;class#DataAccessor#0" />
                   </folding>
                 </state>
               </provider>
@@ -113,6 +115,37 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state>
                   <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1199#1200#0" expanded="true" />
+                    <element signature="e#1237#1238#0" expanded="true" />
+                    <element signature="e#1274#1275#0" expanded="true" />
+                    <element signature="e#1313#1314#0" expanded="true" />
+                    <element signature="e#1348#1349#0" expanded="true" />
+                    <element signature="e#1386#1387#0" expanded="true" />
+                    <element signature="e#1420#1421#0" expanded="true" />
+                    <element signature="e#1456#1457#0" expanded="true" />
+                    <element signature="e#1493#1494#0" expanded="true" />
+                    <element signature="e#1533#1534#0" expanded="true" />
+                    <element signature="e#1568#1569#0" expanded="true" />
+                    <element signature="e#1605#1606#0" expanded="true" />
+                    <element signature="e#1643#1644#0" expanded="true" />
+                    <element signature="e#1684#1685#0" expanded="true" />
+                    <element signature="e#1748#1749#0" expanded="true" />
+                    <element signature="e#1787#1788#0" expanded="true" />
+                    <element signature="e#1836#1837#0" expanded="true" />
+                    <element signature="e#1877#1878#0" expanded="true" />
+                    <element signature="e#1924#1925#0" expanded="true" />
+                    <element signature="e#1963#1964#0" expanded="true" />
+                    <element signature="e#2008#2009#0" expanded="true" />
+                    <element signature="e#2049#2050#0" expanded="true" />
+                    <element signature="e#2092#2093#0" expanded="true" />
+                    <element signature="e#2127#2128#0" expanded="true" />
+                    <element signature="e#2174#2175#0" expanded="true" />
+                    <element signature="e#2217#2218#0" expanded="true" />
+                    <element signature="e#2264#2265#0" expanded="true" />
+                    <element signature="e#2303#2304#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -124,8 +157,8 @@
           <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/Player.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="559">
-                  <caret line="82" column="32" selection-start-line="82" selection-start-column="32" selection-end-line="82" selection-end-column="32" />
+                <state relative-caret-position="27">
+                  <caret line="52" lean-forward="true" selection-start-line="52" selection-end-line="52" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#1208#1209#0" expanded="true" />
@@ -188,10 +221,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/DataAccessor.java" />
         <option value="$PROJECT_DIR$/src/Game.java" />
-        <option value="$PROJECT_DIR$/src/Lab5Test.java" />
         <option value="$PROJECT_DIR$/src/Player.java" />
+        <option value="$PROJECT_DIR$/src/Lab5Test.java" />
+        <option value="$PROJECT_DIR$/src/DataAccessor.java" />
       </list>
     </option>
   </component>
@@ -389,11 +422,11 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.13143632" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.047425475" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.195" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.065625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -432,8 +465,6 @@
           <caret line="163" lean-forward="true" selection-start-line="163" selection-end-line="163" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5573#5587#0" expanded="true" />
-            <element signature="e#5747#5761#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -462,6 +493,9 @@
           <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getGameList#0;class#DataAccessor#0" />
+            <element signature="method#getPlayerlist#0;class#DataAccessor#0" />
+            <element signature="method#shutdown#0;class#DataAccessor#0" />
           </folding>
         </state>
       </provider>
@@ -472,8 +506,6 @@
           <caret line="158" lean-forward="true" selection-start-line="158" selection-end-line="158" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5573#5587#0" expanded="true" />
-            <element signature="e#5747#5761#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -502,6 +534,9 @@
           <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getGameList#0;class#DataAccessor#0" />
+            <element signature="method#getPlayerlist#0;class#DataAccessor#0" />
+            <element signature="method#shutdown#0;class#DataAccessor#0" />
           </folding>
         </state>
       </provider>
@@ -512,8 +547,6 @@
           <caret line="147" column="18" selection-start-line="147" selection-start-column="18" selection-end-line="147" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5573#5587#0" expanded="true" />
-            <element signature="e#5747#5761#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -542,6 +575,9 @@
           <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getGameList#0;class#DataAccessor#0" />
+            <element signature="method#getPlayerlist#0;class#DataAccessor#0" />
+            <element signature="method#shutdown#0;class#DataAccessor#0" />
           </folding>
         </state>
       </provider>
@@ -552,8 +588,6 @@
           <caret line="175" column="41" lean-forward="true" selection-start-line="175" selection-start-column="41" selection-end-line="175" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#5573#5587#0" expanded="true" />
-            <element signature="e#5747#5761#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -582,6 +616,9 @@
           <caret line="36" column="13" lean-forward="true" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getGameList#0;class#DataAccessor#0" />
+            <element signature="method#getPlayerlist#0;class#DataAccessor#0" />
+            <element signature="method#shutdown#0;class#DataAccessor#0" />
           </folding>
         </state>
       </provider>
@@ -620,31 +657,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DataAccessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Lab5Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1562">
-          <caret line="147" column="41" selection-start-line="147" selection-start-column="41" selection-end-line="147" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5573#5587#0" expanded="true" />
-            <element signature="e#5747#5761#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-373">
+        <state relative-caret-position="-262">
           <caret line="8" column="24" lean-forward="true" selection-start-line="8" selection-start-column="24" selection-end-line="8" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -662,38 +677,61 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="82" column="32" selection-start-line="82" selection-start-column="32" selection-end-line="82" selection-end-column="32" />
+        <state>
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1208#1209#0" expanded="true" />
-            <element signature="e#1246#1247#0" expanded="true" />
-            <element signature="e#1282#1283#0" expanded="true" />
-            <element signature="e#1321#1322#0" expanded="true" />
-            <element signature="e#1357#1358#0" expanded="true" />
-            <element signature="e#1395#1396#0" expanded="true" />
-            <element signature="e#1429#1430#0" expanded="true" />
-            <element signature="e#1465#1466#0" expanded="true" />
-            <element signature="e#1503#1504#0" expanded="true" />
-            <element signature="e#1543#1544#0" expanded="true" />
-            <element signature="e#1578#1579#0" expanded="true" />
-            <element signature="e#1615#1616#0" expanded="true" />
-            <element signature="e#1654#1655#0" expanded="true" />
-            <element signature="e#1695#1696#0" expanded="true" />
-            <element signature="e#1752#1753#0" expanded="true" />
-            <element signature="e#1773#1774#0" expanded="true" />
-            <element signature="e#1842#1843#0" expanded="true" />
-            <element signature="e#1867#1868#0" expanded="true" />
-            <element signature="e#1930#1931#0" expanded="true" />
-            <element signature="e#1954#1955#0" expanded="true" />
-            <element signature="e#2024#2025#0" expanded="true" />
-            <element signature="e#2052#2053#0" expanded="true" />
-            <element signature="e#2108#2109#0" expanded="true" />
-            <element signature="e#2143#2144#0" expanded="true" />
-            <element signature="e#2190#2191#0" expanded="true" />
-            <element signature="e#2233#2234#0" expanded="true" />
-            <element signature="e#2280#2281#0" expanded="true" />
-            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#1199#1200#0" expanded="true" />
+            <element signature="e#1237#1238#0" expanded="true" />
+            <element signature="e#1274#1275#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="e#1348#1349#0" expanded="true" />
+            <element signature="e#1386#1387#0" expanded="true" />
+            <element signature="e#1420#1421#0" expanded="true" />
+            <element signature="e#1456#1457#0" expanded="true" />
+            <element signature="e#1493#1494#0" expanded="true" />
+            <element signature="e#1533#1534#0" expanded="true" />
+            <element signature="e#1568#1569#0" expanded="true" />
+            <element signature="e#1605#1606#0" expanded="true" />
+            <element signature="e#1643#1644#0" expanded="true" />
+            <element signature="e#1684#1685#0" expanded="true" />
+            <element signature="e#1748#1749#0" expanded="true" />
+            <element signature="e#1787#1788#0" expanded="true" />
+            <element signature="e#1836#1837#0" expanded="true" />
+            <element signature="e#1877#1878#0" expanded="true" />
+            <element signature="e#1924#1925#0" expanded="true" />
+            <element signature="e#1963#1964#0" expanded="true" />
+            <element signature="e#2008#2009#0" expanded="true" />
+            <element signature="e#2049#2050#0" expanded="true" />
+            <element signature="e#2092#2093#0" expanded="true" />
+            <element signature="e#2127#2128#0" expanded="true" />
+            <element signature="e#2174#2175#0" expanded="true" />
+            <element signature="e#2217#2218#0" expanded="true" />
+            <element signature="e#2264#2265#0" expanded="true" />
+            <element signature="e#2303#2304#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Lab5Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="170" column="97" selection-start-line="170" selection-start-column="97" selection-end-line="170" selection-end-column="97" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DataAccessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="97" column="71" selection-start-line="97" selection-start-column="71" selection-end-line="97" selection-end-column="71" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getGameList#0;class#DataAccessor#0" />
+            <element signature="method#getPlayerlist#0;class#DataAccessor#0" />
+            <element signature="method#shutdown#0;class#DataAccessor#0" />
           </folding>
         </state>
       </provider>
