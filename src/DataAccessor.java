@@ -3,11 +3,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 import java.rmi.RemoteException;
-import java.sql.Connection ;
-import java.sql.DriverManager ;
-import java.sql.SQLException ;
-import java.sql.Statement ;
-import java.sql.ResultSet ;
+import java.sql.*;
 
 import java.util.List ;
 import java.util.ArrayList ;
@@ -112,11 +108,10 @@ public class DataAccessor {
         }
     }
 
-    public List getGameLadder(String game_id) throws SQLException {
+    public ObservableList getGameLadder() throws SQLException {
 
         String query = "select first_name, last_name, score from Player, PlayerAndGame " +
-                "where Player.player_id = PlayerAndGame.player_id " +
-                "and PlayerAndGame.game_id  = " + game_id;
+                "where Player.player_id = PlayerAndGame.player_id ";
 
         try (
                 Statement stmnt = connection.createStatement();
@@ -126,7 +121,7 @@ public class DataAccessor {
                 )
 
         {
-            List ladders = new ArrayList<>();
+            ObservableList ladders = FXCollections.observableArrayList();
             while(rs.next()) {
                 String first_name = rs.getString("first_name");
                 String last_name = rs.getString("last_name");
@@ -146,12 +141,14 @@ public class DataAccessor {
         // Duplication error code = 2601
         int PK_DUPLICATE = 2601;
 
-        String query = "insert into game" +
-                "values("+ game_id+","+game_title+")";
-
+        //String query = "insert into game" +
+                //"values("+ game_id+","+game_title+")";
+        PreparedStatement query = connection.prepareStatement("insert into game values(?,?)");
+        query.setString(1,game_id);
+        query.setString(2,game_title);
         try{
             Statement stmnt = connection.createStatement();
-            ResultSet rs = stmnt.executeQuery(query);
+            query.executeUpdate();
 
         } catch(SQLException e){
             if(e.getErrorCode() == PK_DUPLICATE ){

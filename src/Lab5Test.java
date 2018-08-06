@@ -27,17 +27,21 @@ import java.util.List;
 public class Lab5Test extends Application {
     private DataAccessor data;
     public String gameIdForQuery = "0";
+    public String game_id_insert = "";
+    public String game_title_insert = "";
+    public String connectionString = "jdbc:sqlserver://kienngolab5.database.windows.net:1433;" +
+            "database=KienNgo_Lab5COMP228;" +
+            "user=kienngo@kienngolab5;" +
+            "password=#Absinthe23;" +
+            "encrypt=true;" +
+            "trustServerCertificate=false;" +
+            "hostNameInCertificate=*.database.windows.net;" +
+            "loginTimeout=30;";
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Get data
-        String connectionString = "jdbc:sqlserver://kienngolab5.database.windows.net:1433;" +
-                "database=KienNgo_Lab5COMP228;" +
-                "user=kienngo@kienngolab5;" +
-                "password=#Absinthe23;" +
-                "encrypt=true;" +
-                "trustServerCertificate=false;" +
-                "hostNameInCertificate=*.database.windows.net;" +
-                "loginTimeout=30;";
+
 
         data = new DataAccessor(connectionString);
 
@@ -72,22 +76,37 @@ public class Lab5Test extends Application {
         // Action
         addGameButton.setOnAction(new EventHandler<ActionEvent>()  {
             @Override
-            public void handle(ActionEvent event) throws {
-                if (gameIdTextField.getText() != null && gameIdTextField.getText() !=""
-                        && gameTitleTextField.getText() != null && gameTitleTextField.getText() != "") {
-                    String game_id = gameIdTextField.getText();
-                    String game_title = gameTitleTextField.getText();
-                    //data.addGame(game_id, game_title);
+            public void handle(ActionEvent event) {
+                try {
+                    if (gameIdTextField.getText() != null && gameIdTextField.getText() !=""
+                            && gameTitleTextField.getText() != null && gameTitleTextField.getText() != "") {
+                        game_id_insert = gameIdTextField.getText();
+                        game_title_insert = gameTitleTextField.getText();
+                        data.addGame(game_id_insert,game_title_insert);
 
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Input error");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Please input atleast something");
-                    alert.showAndWait();
+                    } else {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Input error");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Please input at least something");
+                        alert.showAndWait();
+                    }
+                    System.out.println("Clicked");
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
+
             }
         });
+
+        resetGameButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                gameIdTextField.clear();
+                gameTitleTextField.clear();
+            }
+        });
+
 
         // Add content to Pane
         addGamePane.add(gameIdLabel,0,0);
@@ -186,7 +205,7 @@ public class Lab5Test extends Application {
         GridPane playerLadderGridPane = new GridPane();
         playerLadderGridPane.setAlignment(Pos.CENTER);
         Label selectGameOnLadder = new Label("Select a game to view ladder");
-        ObservableList gameListCC = FXCollections.observableList(data.getGameLadder(gameIdForQuery));
+        ObservableList gameListCC = data.getGameLadder();
         ListView<String> laddersListView = new ListView<String>(gameListCC);
         ComboBox gameList = new ComboBox(games);
 
@@ -218,6 +237,13 @@ public class Lab5Test extends Application {
         playerLadderGridPane.add(laddersListView,0,2);
         playerLadder.setContent(playerLadderGridPane);
 
+
+
+
+
+
+
+
         //----------------------- DATABASE LOG
         Tab viewInfo = new Tab();
         viewInfo.setText("Database log");
@@ -237,10 +263,20 @@ public class Lab5Test extends Application {
         Label gameListViewLabel = new Label("List of games");
         Label playerListViewLabel = new Label("List of players");
 
+        Button updateDatabase = new Button("Update log");
+        updateDatabase.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                gameListView.refresh();
+                playerListView.refresh();
+            }
+        });
+
         viewPane.add(gameListViewLabel,0,0);
         viewPane.add(playerListViewLabel,1,0);
         viewPane.add(gameListView,0,1);
         viewPane.add(playerListView,1,1);
+        viewPane.add(updateDatabase, 0,3);
 
         viewPane.setAlignment(Pos.CENTER);
         viewInfo.setContent(viewPane);
@@ -258,6 +294,7 @@ public class Lab5Test extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 
     @Override
     public void stop() throws Exception {
