@@ -205,8 +205,7 @@ public class Lab5Test extends Application {
         GridPane playerLadderGridPane = new GridPane();
         playerLadderGridPane.setAlignment(Pos.CENTER);
         Label selectGameOnLadder = new Label("Select a game to view ladder");
-        ObservableList gameListCC = data.getGameLadder();
-        ListView<String> laddersListView = new ListView<String>(gameListCC);
+        ListView<String> laddersListView = new ListView<String>(data.getGameLadder("2"));
         ComboBox gameList = new ComboBox(games);
 
         Button viewLadderButton = new Button("View");
@@ -216,21 +215,18 @@ public class Lab5Test extends Application {
             @Override
             public void handle(ActionEvent event) {
 
-                gameIdForQuery = Integer.toString(gameList.getSelectionModel().getSelectedIndex() + 1);
-                laddersListView.setItems(gameListCC);
-                System.out.println("Clicked");
+                try {
+                    String game_id = Integer.toString(gameList.getSelectionModel().getSelectedIndex() +1);
+                    laddersListView.setItems(data.getGameLadder(game_id));
+                    System.out.println("Clicked");
+                } catch (SQLException e) {
+
+                }
+
             }
         });
 
-        /*
-        gameList.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                gameIdForQuery = Integer.toString(gameList.getSelectionModel().getSelectedIndex()+1);
-                laddersListView.setItems(gameListCC);
-            }
-        });
-*/
+
         playerLadderGridPane.add(selectGameOnLadder,0,0);
         playerLadderGridPane.add(gameList,0,1);
         playerLadderGridPane.add(viewLadderButton,1,1);

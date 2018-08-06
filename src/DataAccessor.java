@@ -108,16 +108,16 @@ public class DataAccessor {
         }
     }
 
-    public ObservableList getGameLadder() throws SQLException {
+    public ObservableList getGameLadder(String gameIdForLadder) throws SQLException {
 
         String query = "select first_name, last_name, score from Player, PlayerAndGame " +
-                "where Player.player_id = PlayerAndGame.player_id ";
+                "where Player.player_id = PlayerAndGame.player_id and game_id = "+ gameIdForLadder;
 
         try (
                 Statement stmnt = connection.createStatement();
 
 
-                ResultSet rs = stmnt.executeQuery(query);
+                ResultSet rs = stmnt.executeQuery(query)
                 )
 
         {
@@ -149,6 +149,42 @@ public class DataAccessor {
         try{
             Statement stmnt = connection.createStatement();
             query.executeUpdate();
+
+        } catch(SQLException e){
+            if(e.getErrorCode() == PK_DUPLICATE ){
+                //duplicate primary key
+                System.out.println("Duplicate primary key");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Input error");
+                alert.setHeaderText(null);
+                alert.setContentText("Game ID is duplicated, please input another value");
+                alert.showAndWait();
+            }
+        }
+    }
+
+    public void addPlayer(String player_id,
+                          String first_name,
+                          String last_name,
+                          String address,
+                          String postal_code,
+                          String province,
+                          String phone_number) throws SQLException {
+
+        // Duplication error code = 2601
+        int PK_DUPLICATE = 2601;
+        PreparedStatement querry = connection.prepareStatement("insert into player values(?, ?, ?, ?, ?, ?, ? )");
+        querry.setString(1, player_id);
+        querry.setString(2, first_name);
+        querry.setString(3, last_name);
+        querry.setString(4, address);
+        querry.setString(5, postal_code);
+        querry.setString(6, province);
+        querry.setString(7, phone_number);
+
+        try{
+            Statement stmnt = connection.createStatement();
+            querry.executeUpdate();
 
         } catch(SQLException e){
             if(e.getErrorCode() == PK_DUPLICATE ){
