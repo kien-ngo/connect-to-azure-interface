@@ -238,9 +238,29 @@ public class Lab5Test extends Application {
         addPlayer.setContent(addPlayerPane);
 
 
+        // --------------------ADD A RECORD
+        Tab addRecord = new Tab();
+        addRecord.setText("Add/Update a record");
+        GridPane addRecordPane = new GridPane();
+        addRecordPane.setAlignment(Pos.CENTER);
+        addRecordPane.setVgap(10);
+        Label justALabel = new Label("Add new score and playing date to a game");
+        ComboBox recordGameCB = new ComboBox(FXCollections.observableList(data.getGameTitle()));
+        ComboBox recordPlayerCB = new ComboBox((FXCollections.observableList(data.getPlayerName())));
+        Label scoreLB = new Label("Score: ");
+        Label dateLB = new Label("Playing date: ");
+        TextField scoreTF = new TextField();
+        TextField dateTF = new TextField();
 
+        addRecordPane.add(justALabel,1,0);
+        addRecordPane.add(recordGameCB,1,1);
+        addRecordPane.add(recordPlayerCB,1,2);
+        addRecordPane.add(scoreLB,0,3);
+        addRecordPane.add(scoreTF,1,3);
+        addRecordPane.add(dateLB,0,4);
+        addRecordPane.add(dateTF,1,4);
 
-
+        addRecord.setContent(addRecordPane);
 
         //----------------------- VIEW PLAYER LADDER
         Tab playerLadder = new Tab();
@@ -324,7 +344,7 @@ public class Lab5Test extends Application {
         viewPane.setAlignment(Pos.CENTER);
         viewInfo.setContent(viewPane);
 
-        tabPane.getTabs().addAll(addGame,addPlayer,playerLadder,viewInfo);
+        tabPane.getTabs().addAll(addGame,addPlayer,addRecord,playerLadder,viewInfo);
 
 
 
