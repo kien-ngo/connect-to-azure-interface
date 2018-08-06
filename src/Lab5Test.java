@@ -134,6 +134,8 @@ public class Lab5Test extends Application {
         addPlayerPane.setVgap(5);
         addPlayerPane.setHgap(5);
         // Add content to pane
+        Label pAndGIdLabel = new Label("P & G ID: ");
+        TextField pAndGTextField = new TextField();
         Label playerIdLabel = new Label("Player ID: ");
         TextField playerIdTextField = new TextField();
         Label firstNameLabel = new Label("First name: ");
@@ -159,36 +161,77 @@ public class Lab5Test extends Application {
         Button addPlayerButton = new Button("Add player");
         Button resetPlayerButton = new Button("Reset");
 
+        resetPlayerButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                playerIdTextField.clear();
+                firstNameTextField.clear();
+                lastNameTextField.clear();
+                addressTextField.clear();
+                postalCodeTextField.clear();
+                provinceTextField.clear();
+                phoneTextField.clear();
+                gamePlayedComboBox.getSelectionModel().clearSelection();
+                playingDatePicker.setValue(null);
+                playingDatePicker.getEditor().clear();
+            }
+        });
 
+        addPlayerButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    // player table
+                    String player_id = playerIdTextField.getText();
+                    String first_name = firstNameTextField.getText();
+                    String last_name = lastNameTextField.getText();
+                    String address = addressTextField.getText();
+                    String postalCode = postalCodeTextField.getText();
+                    String province = provinceTextField.getText();
+                    String phone_number = phoneTextField.getText();
+                    // Player&Game table
+                    String p_g_id = pAndGTextField.getText();
+                    String game_id = Integer.toString(gamePlayedComboBox.getSelectionModel().getSelectedIndex() +1);
+                    String score = scoreTextField.getText();
+                    String playing_date = playingDatePicker.getValue().toString();
+
+                    data.addPlayer(player_id, first_name, last_name, address, postalCode, province, phone_number,p_g_id, game_id, score, playing_date);
+
+                } catch (SQLException e) {
+
+                }
+            }
+        });
         //
 
 
+        addPlayerPane.add(pAndGIdLabel,0,0);
+        addPlayerPane.add(playerIdLabel,0,1);
+        addPlayerPane.add(firstNameLabel,0,2);
+        addPlayerPane.add(lastNameLabel,0,3);
+        addPlayerPane.add(addressLabel,0,4);
+        addPlayerPane.add(postalCodeLabel,0,5);
+        addPlayerPane.add(provinceLabel,0,6);
+        addPlayerPane.add(phoneLabel,0,7);
+        addPlayerPane.add(gamePlayedLabel,0,8);
 
-        addPlayerPane.add(playerIdLabel,0,0);
-        addPlayerPane.add(firstNameLabel,0,1);
-        addPlayerPane.add(lastNameLabel,0,2);
-        addPlayerPane.add(addressLabel,0,3);
-        addPlayerPane.add(postalCodeLabel,0,4);
-        addPlayerPane.add(provinceLabel,0,5);
-        addPlayerPane.add(phoneLabel,0,6);
-        addPlayerPane.add(gamePlayedLabel,0,7);
-
-        addPlayerPane.add(scoreLabel,0,8);
-        addPlayerPane.add(dateLabel,0,9);
-        addPlayerPane.add(addPlayerButton,0,10);
+        addPlayerPane.add(scoreLabel,0,9);
+        addPlayerPane.add(dateLabel,0,10);
+        addPlayerPane.add(addPlayerButton,0,11);
         //------ Text fields
-        addPlayerPane.add(playerIdTextField,1,0);
-        addPlayerPane.add(firstNameTextField,1,1);
-        addPlayerPane.add(lastNameTextField,1,2);
-        addPlayerPane.add(addressTextField,1,3);
-        addPlayerPane.add(postalCodeTextField,1,4);
-        addPlayerPane.add(provinceTextField,1,5);
-        addPlayerPane.add(phoneTextField,1,6);
-        addPlayerPane.add(gamePlayedComboBox,1,7);
+        addPlayerPane.add(pAndGTextField,1,0);
+        addPlayerPane.add(playerIdTextField,1,1);
+        addPlayerPane.add(firstNameTextField,1,2);
+        addPlayerPane.add(lastNameTextField,1,3);
+        addPlayerPane.add(addressTextField,1,4);
+        addPlayerPane.add(postalCodeTextField,1,5);
+        addPlayerPane.add(provinceTextField,1,6);
+        addPlayerPane.add(phoneTextField,1,7);
+        addPlayerPane.add(gamePlayedComboBox,1,8);
 
-        addPlayerPane.add(scoreTextField,1,8);
-        addPlayerPane.add(playingDatePicker,1,9);
-        addPlayerPane.add(resetPlayerButton,1,10);
+        addPlayerPane.add(scoreTextField,1,9);
+        addPlayerPane.add(playingDatePicker,1,10);
+        addPlayerPane.add(resetPlayerButton,1,11);
 
         addPlayerPane.setAlignment(Pos.CENTER);
         // Add pane to Tab
@@ -205,7 +248,7 @@ public class Lab5Test extends Application {
         GridPane playerLadderGridPane = new GridPane();
         playerLadderGridPane.setAlignment(Pos.CENTER);
         Label selectGameOnLadder = new Label("Select a game to view ladder");
-        ListView<String> laddersListView = new ListView<String>(data.getGameLadder("2"));
+        ListView<String> laddersListView = new ListView<String>();
         ComboBox gameList = new ComboBox(games);
 
         Button viewLadderButton = new Button("View");
@@ -222,7 +265,6 @@ public class Lab5Test extends Application {
                 } catch (SQLException e) {
 
                 }
-
             }
         });
 
@@ -263,8 +305,13 @@ public class Lab5Test extends Application {
         updateDatabase.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                gameListView.refresh();
-                playerListView.refresh();
+                try {
+                    gameListView.setItems(FXCollections.observableArrayList(data.getGameTitle()));
+                    playerListView.setItems(FXCollections.observableArrayList(data.getPlayerName()));
+
+                } catch (SQLException e) {
+
+                }
             }
         });
 

@@ -110,7 +110,7 @@ public class DataAccessor {
 
     public ObservableList getGameLadder(String gameIdForLadder) throws SQLException {
 
-        String query = "select first_name, last_name, score from Player, PlayerAndGame " +
+        String query = "select first_name, last_name, score, playing_date from Player, PlayerAndGame " +
                 "where Player.player_id = PlayerAndGame.player_id and game_id = "+ gameIdForLadder;
 
         try (
@@ -127,8 +127,8 @@ public class DataAccessor {
                 String last_name = rs.getString("last_name");
                 String name = first_name + " " + last_name;
                 String score = rs.getString("score");
-
-                String log = String.format("%-35s %s", name, score);
+                String date = rs.getString("playing_date");
+                String log = String.format("%-20s %-20s %s", name, score, date);
                 ladders.add(log);
             }
 
@@ -136,6 +136,14 @@ public class DataAccessor {
         }
 
     }
+
+    //public ObservableList getCurrentPlayerAndTheirGame() throws SQLException{
+       // return new FXCollections().observableList();
+   // }
+
+
+
+    // ADD
 
     public void addGame(String game_id, String game_title) throws SQLException{
         // Duplication error code = 2601
@@ -169,11 +177,17 @@ public class DataAccessor {
                           String address,
                           String postal_code,
                           String province,
-                          String phone_number) throws SQLException {
+                          String phone_number,
+                          String p_a_g,
+                          String game_id,
+                          String score,
+                          String date) throws SQLException {
 
         // Duplication error code = 2601
         int PK_DUPLICATE = 2601;
         PreparedStatement querry = connection.prepareStatement("insert into player values(?, ?, ?, ?, ?, ?, ? )");
+        PreparedStatement addToPAndGTableQuery = connection.prepareStatement("insert into PlayerAndGame values(?,?,?,?,?)");
+
         querry.setString(1, player_id);
         querry.setString(2, first_name);
         querry.setString(3, last_name);
@@ -182,9 +196,16 @@ public class DataAccessor {
         querry.setString(6, province);
         querry.setString(7, phone_number);
 
+        addToPAndGTableQuery.setString(1, p_a_g);
+        addToPAndGTableQuery.setString(2, game_id);
+        addToPAndGTableQuery.setString(3, player_id);
+        addToPAndGTableQuery.setString(4, date);
+        addToPAndGTableQuery.setString(5, score);
+
         try{
             Statement stmnt = connection.createStatement();
             querry.executeUpdate();
+            addToPAndGTableQuery.executeUpdate();
 
         } catch(SQLException e){
             if(e.getErrorCode() == PK_DUPLICATE ){
@@ -198,6 +219,7 @@ public class DataAccessor {
             }
         }
     }
+
 
 
     public void shutdown() throws SQLException {
